@@ -22,6 +22,13 @@ Features
 - Explorer Integration: Submit quotes and verify on external explorers (t16z)
 - Blog-Style Guide: Understand how remote attestation works end to end
 
+Security features
+- Intel TDX: Hardware-based isolation and measured boot
+- dStack SDK 0.5.x: Production-grade primitives for quote generation and TEE info
+- Zero Trust: Verify at every step — API, UI, and operators should check measurements and proofs
+- Real-time measurements: Obtain MRTD and RTMR0–3 to assert runtime state
+- Cryptographic evidence: Hashes, signatures, and quotes form comparable artifacts
+
 Architecture
 
   +-----------------------------------------------------------+
@@ -94,6 +101,32 @@ Ports
 
 Docker Compose (Phala-ready)
 Includes two services (UI and API) and mounts TEE sockets when present.
+
+API Endpoints
+Python FastAPI (api)
+- GET /api/health — health and readiness
+- POST /api/attestation/generate — generate an attestation (quote, event log, RTMRs when available)
+- POST /api/attestation/verify — verify an attestation against expected data
+- GET /api/tee/info — TEE info (Intel TDX, device_id, versions)
+- GET /api/tee/measurements — measurements (MRTD, RTMR0–3)
+- POST /api/tee/execute — execute a named function in the TEE
+- GET /api/security/status — environment security status and socket availability
+- GET /api/test/all — run a suite of checks and timing metrics
+
+Optional Bun server (bun-server)
+- GET / — service status
+- GET /api/benchmark — latency measurements across operations
+- POST /api/attestation/batch — batch generate attestations and summarize results
+- GET /api/tee/monitor — fetch info + measurements + security status together
+
+Quick tests
+- Health: curl https://<appId>-8000.<gateway-domain>/api/health
+- Generate attestation:
+
+  curl -s -X POST \
+    https://<appId>-8000.<gateway-domain>/api/attestation/generate \
+    -H "Content-Type: application/json" \
+    -d '{"data":"hello","nonce":"123"}' | jq .
 
 Remote Attestation — the mental model
 1) Identity and measurements
