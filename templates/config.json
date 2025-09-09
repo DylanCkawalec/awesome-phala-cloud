@@ -460,5 +460,28 @@
     ],
     "defaultResource": { "vCPU": 2, "memory": 2048, "diskSize": 20 },
     "tags": ["Storage", "Akave", "REST", "TEE"]
+  },
+  {
+    "id": "ra-dashboard",
+    "name": "Remote Attestation Dashboard (dStack Visualizer)",
+    "description": "An interactive remote attestation dashboard for Phala TEEs with a Next.js UI and FastAPI backend. Visualizes quote generation and verification, includes a comprehensive API test suite, and integrates with t16z for external verification.",
+    "repo": "https://github.com/DylanCkawalec/dstack-visualizer",
+    "author": "DylanCkawalec",
+    "icon": "dstack-logo.png",
+    "envs": [
+      { "key": "PHALA_API_KEY", "required": true, "description": "Phala API key for TEE access" },
+      { "key": "DSTACK_API_KEY", "required": false, "description": "Optional dStack API key" },
+      { "key": "DSTACK_ENDPOINT", "required": false, "default": "https://api.dstack.network" },
+      { "key": "PHALA_ENDPOINT", "required": false, "default": "https://api.phala.network" },
+      { "key": "APP_NAME", "required": false, "default": "remote-attestation-dashboard" },
+      { "key": "APP_VERSION", "required": false, "default": "1.0.0" },
+      { "key": "DEVELOPER_NAME", "required": false, "default": "Your Name" },
+      { "key": "ORGANIZATION", "required": false, "default": "Your Org" },
+      { "key": "NODE_ENV", "required": false, "default": "production" },
+      { "key": "ATTESTATION_SEED", "required": false },
+      { "key": "ATTESTATION_SALT", "required": false }
+    ],
+    "defaultResource": { "vCPU": 2, "memory": 2048, "diskSize": 20 },
+    "tags": ["TEE", "Remote Attestation", "Dashboard", "dStack"]
   }
 ]

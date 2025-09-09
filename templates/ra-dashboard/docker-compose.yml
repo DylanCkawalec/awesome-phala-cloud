@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  web:
+    image: dylanckawalec/dstack-visualizer-web:latest
+    container_name: ra-dashboard-web
+    ports:
+      - "80:3000"
+    environment:
+      PHALA_API_KEY: ${PHALA_API_KEY}
+      DSTACK_API_KEY: ${DSTACK_API_KEY}
+      DSTACK_ENDPOINT: ${DSTACK_ENDPOINT}
+      PHALA_ENDPOINT: ${PHALA_ENDPOINT}
+      APP_NAME: ${APP_NAME}
+      APP_VERSION: ${APP_VERSION}
+      DEVELOPER_NAME: ${DEVELOPER_NAME}
+      ORGANIZATION: ${ORGANIZATION}
+      NODE_ENV: ${NODE_ENV}
+      ATTESTATION_SEED: ${ATTESTATION_SEED}
+      ATTESTATION_SALT: ${ATTESTATION_SALT}
+    restart: always
+    depends_on:
+      - api
+
+  api:
+    image: dylanckawalec/dstack-visualizer-api:latest
+    container_name: ra-dashboard-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - /var/run/dstack.sock:/var/run/dstack.sock
+      - /var/run/tappd.sock:/var/run/tappd.sock
+    environment:
+      PHALA_API_KEY: ${PHALA_API_KEY}
+      DSTACK_API_KEY: ${DSTACK_API_KEY}
+      DSTACK_ENDPOINT: ${DSTACK_ENDPOINT}
+      PHALA_ENDPOINT: ${PHALA_ENDPOINT}
+      NODE_ENV: ${NODE_ENV}
+    restart: always
+
