@@ -35,6 +35,7 @@ A curated list of awesome Phala Cloud resources, tools, and templates.
 
 ### Other Templates
 
+- [**Remote Attestation Dashboard (dStack Visualizer)**](templates/ra-dashboard) - An interactive dashboard for TEE remote attestation on Phala (Next.js UI + FastAPI backend). Visualizes quote generation/verification, includes a comprehensive API test suite, and integrates with the t16z explorer. *by DylanCkawalec*
 - [**n8n Workflow Automation**](https://github.com/Phala-Network/awesome-phala-cloud/tree/main/templates/n8n) - A powerful workflow automation tool deployed on Phala Cloud with OAuth2 authentication fixes for TEE environment. Build complex automations, integrate with 400+ services, and run workflows securely within the TEE. *by n8n*
 - [**Maybe Finance**](https://github.com/Phala-Network/awesome-phala-cloud/tree/main/templates/maybe-ai) - A comprehensive open-source personal finance management app deployed on Phala Cloud. Track expenses, budgets, investments, and net worth with bank syncing, AI insights, and beautiful analytics - all secured within TEE infrastructure. *by Maybe Finance*
 - [**Anyone Anon Service**](https://github.com/rA3ka/dstack-examples/tree/main/anyone-anon-service) - Sets up a Anyone Anon (hidden) service and serves an nginx website from that. *by Anyone*
